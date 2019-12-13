@@ -51,16 +51,58 @@ while (passwordCriteria !== null) {
         }
     }
 
-    if( passwordCriteriaBoolSpecial === true ||
+    if (passwordCriteriaBoolSpecial === true ||
         passwordCriteriaBoolNumerical === true ||
         passwordCriteriaBoolUpper === true ||
-        passwordCriteriaBoolLower === true ) {
+        passwordCriteriaBoolLower === true) {
         break;
-        }
-    else
-    {
+    }
+    else {
+        alert("enter a valid password");
 
     }
 
 
 }
+
+generatePassword(passwordLength, passwordCriteriaBoolSpecial, passwordCriteriaBoolNumerical, passwordCriteriaBoolLower, passwordCriteriaBoolUpper);
+function generatePassword(length, specialCharBool, numericalCharBool, lowerCharBool, upperCharBool) {
+    var passwordString;
+    var passwordArr = [];
+    var availableCharSetArr = [];
+    var availableCharSetString;
+    var specialCharSet = [' !"#$%&()*+,-./:;<=>?@[\]^_`{|}~'];
+    var numericalCharSet = ['1234567890'];
+    var lowerCharSet = ['abcdefghijklmnopqrstuvwyxz'];
+    var upperCharSet = ['ABCDEFGHIJKLMNOPQRSTUVWYXZ'];
+    if (specialCharBool === true) {
+        availableCharSetArr = availableCharSetArr.concat(specialCharSet);
+    }
+    if (numericalCharBool === true) {
+        availableCharSetArr = availableCharSetArr.concat(numericalCharSet);
+    }
+    if (lowerCharBool === true) {
+        availableCharSetArr = availableCharSetArr.concat(lowerCharSet);
+    }
+    if (upperCharBool === true) {
+        availableCharSetArr = availableCharSetArr.concat(upperCharSet);
+    }
+    availableCharSetArr = availableCharSetArr.join('');
+    availableCharSetString = availableCharSetArr.toString();
+
+    for (var i = 0; i < length; i++) {
+        var randomNum = Math.floor((Math.random() * availableCharSetArr.length) + 1)
+
+        passwordArr.push(availableCharSetString.charAt(randomNum));
+        
+
+    }
+    passwordArr = passwordArr.join("");
+   passwordString = passwordArr.toString(); 
+   console.log(passwordString);
+   alert("Your password is " + passwordString);
+
+
+}
+
+
